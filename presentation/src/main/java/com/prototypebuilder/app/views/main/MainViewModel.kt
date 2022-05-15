@@ -10,9 +10,11 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.prototypebuilder.domain.core.base.ActivityModel
 import com.prototypebuilder.domain.core.base.AppModel
 import com.prototypebuilder.domain.core.resource.Resource
 import com.prototypebuilder.domain.core.usecase.UseCaseResponse
+import com.prototypebuilder.domain.usecase.activity.GetActivityListUseCase
 import com.prototypebuilder.domain.usecase.app.DeleteAppByIdUseCase
 import com.prototypebuilder.domain.usecase.app.GetAppByIdUseCase
 import com.prototypebuilder.domain.usecase.app.GetAppsListUseCase
@@ -27,7 +29,8 @@ class MainViewModel @Inject constructor(
     private val getAppsListUseCase: GetAppsListUseCase,
     private val getAppByIdUseCase: GetAppByIdUseCase,
     private val insertAppUseCase: InsertAppUseCase,
-    private val deleteAppByIdUseCase: DeleteAppByIdUseCase
+    private val deleteAppByIdUseCase: DeleteAppByIdUseCase,
+    private val getActivityListUseCase: GetActivityListUseCase
 ) : ViewModel() {
 
     var navigator: MainNavigator? = null
@@ -61,6 +64,13 @@ class MainViewModel @Inject constructor(
         deleteAppState = deleteAppByIdUseCase.invokeState(
             scope = viewModelScope,
             params = DeleteAppByIdUseCase.Params(appId)
+        )
+    }
+
+    suspend fun getActivityList(appId: Long): Flow<List<ActivityModel>> {
+        return getActivityListUseCase.invokeThread(
+            scope = viewModelScope,
+            params = GetActivityListUseCase.Params(appId)
         )
     }
 

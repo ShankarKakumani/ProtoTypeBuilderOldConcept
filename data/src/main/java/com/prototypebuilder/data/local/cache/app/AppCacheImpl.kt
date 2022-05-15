@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class AppCacheImpl @Inject constructor(
-    private val appDao: AppDao
+    private val appDao: AppDao,
 ) : AppCache {
     override suspend fun getAppsList(): Flow<List<RMAppEntity>> {
         return appDao.getApps().map {

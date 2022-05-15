@@ -10,5 +10,5 @@ interface ActivityCache {
     suspend fun getActivityListByAppId(appId: Long): Flow<List<RMActivityEntity>>
     suspend fun insertActivity(rmActivityEntity: RMActivityEntity): Boolean
     suspend fun deleteActivity(activityId: Long): Boolean
-
+    suspend fun deleteActivityByAppId(appId: Long): Boolean
 }

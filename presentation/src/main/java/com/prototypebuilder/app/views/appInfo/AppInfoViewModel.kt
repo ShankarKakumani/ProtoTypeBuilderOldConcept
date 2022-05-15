@@ -13,19 +13,18 @@ import com.prototypebuilder.domain.core.base.ActivityModel
 import com.prototypebuilder.domain.core.base.AppModel
 import com.prototypebuilder.domain.core.resource.Resource
 import com.prototypebuilder.domain.core.usecase.UseCaseResponse
-import com.prototypebuilder.domain.usecase.activity.GetActivityByAppIdUseCase
+import com.prototypebuilder.domain.usecase.activity.GetActivityListUseCase
 import com.prototypebuilder.domain.usecase.activity.InsertActivityUseCase
 import com.prototypebuilder.domain.usecase.app.GetAppByIdUseCase
 import com.simpleenergy.domain.core.error.ApiError
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @HiltViewModel
 class AppInfoViewModel @Inject constructor(
     private val getAppByIdUseCase: GetAppByIdUseCase,
-    private val getActivityByAppIdUseCase: GetActivityByAppIdUseCase,
+    private val getActivityListUseCase: GetActivityListUseCase,
     private val insertActivityUseCase: InsertActivityUseCase
 ) : ViewModel() {
 
@@ -44,10 +43,10 @@ class AppInfoViewModel @Inject constructor(
     }
 
     fun getActivityListByAppId(appId: Long) {
-        getActivityByAppIdUseCase.invoke(
+        getActivityListUseCase.invoke(
             viewModelScope,
             callback = getActivityListCallBack(),
-            params = GetActivityByAppIdUseCase.Params(appId)
+            params = GetActivityListUseCase.Params(appId)
         )
     }
 

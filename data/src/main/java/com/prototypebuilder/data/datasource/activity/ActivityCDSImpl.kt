@@ -29,4 +29,8 @@ class ActivityCDSImpl @Inject constructor(
         return activityCache.deleteActivity(activityId)
     }
 
+    override suspend fun deleteActivityByAppId(appId: Long): Boolean {
+        return activityCache.deleteActivityByAppId(appId)
+    }
+
 }

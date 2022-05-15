@@ -6,8 +6,13 @@ package com.prototypebuilder.domain.core.usecase
 
 import com.prototypebuilder.domain.core.enum.DataType
 import com.prototypebuilder.domain.core.error.traceErrorException
+import com.prototypebuilder.domain.core.resource.Resource
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.launch
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 abstract class UseCaseParams<T, in Parameter> {
 
@@ -15,7 +20,7 @@ abstract class UseCaseParams<T, in Parameter> {
 
     fun invoke(
         scope: CoroutineScope,
-        callback: UseCaseResponse<T>?,
+        callback: UseCaseResponse<T>? = null,
         params: Parameter,
         dataType: DataType = DataType.ForceCacheStrategy
     ) {

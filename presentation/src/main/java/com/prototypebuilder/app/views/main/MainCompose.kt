@@ -16,12 +16,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -29,7 +28,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.prototypebuilder.app.R
 import com.prototypebuilder.app.compose.layouts.ShowAlertDialog
 import com.prototypebuilder.app.utils.ComposeUtils
+import com.prototypebuilder.domain.core.base.ActivityModel
 import com.prototypebuilder.domain.core.base.AppModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.emptyFlow
 
 class MainCompose {
 
@@ -102,6 +105,14 @@ class MainCompose {
         ) {
 
             val (number, logo, appName, activitiesCount, delete) = createRefs()
+            val activityList: MutableState<List<ActivityModel>> = remember {
+                mutableStateOf(emptyList())
+            }
+            LaunchedEffect(Unit) {
+                viewModel.getActivityList(appModel.appId).collect {
+                    activityList.value = it
+                }
+            }
 
             Text(
                 modifier = Modifier
@@ -124,13 +135,27 @@ class MainCompose {
 
             Text(
                 modifier = Modifier
-                    .padding(15.dp)
+                    .padding(start = 15.dp)
                     .constrainAs(appName) {
-                        centerVerticallyTo(parent)
+                        top.linkTo(parent.top)
+                        bottom.linkTo(activitiesCount.top, 1.dp)
                         start.linkTo(logo.end, 10.dp)
                     },
-                fontSize = 18.sp,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 22.sp,
                 text = appModel.appName ?: ""
+            )
+
+            Text(
+                modifier = Modifier
+                    .padding(start = 15.dp)
+                    .constrainAs(activitiesCount) {
+                        top.linkTo(appName.bottom, 1.dp)
+                        start.linkTo(logo.end, 10.dp)
+                        bottom.linkTo(parent.bottom)
+                    },
+                fontSize = 16.sp,
+                text = "Activity Count - " + activityList.value.size.toString()
             )
 
             Image(

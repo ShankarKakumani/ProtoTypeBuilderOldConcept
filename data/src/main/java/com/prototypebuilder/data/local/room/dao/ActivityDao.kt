@@ -33,6 +33,9 @@ interface ActivityDao {
     @Query("DELETE FROM tableActivityList where activityId =:activityId")
     suspend fun deleteActivityById(activityId: Long): Int
 
+    @Query("DELETE FROM tableActivityList where appId = :appId")
+    suspend fun deleteActivityByAppId(appId: Long) : Int
+
     @Query("DELETE FROM tableActivityList")
     suspend fun deleteAll()
 }

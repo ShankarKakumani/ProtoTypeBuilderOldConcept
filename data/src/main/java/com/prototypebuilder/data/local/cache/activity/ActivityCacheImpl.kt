@@ -35,4 +35,9 @@ class ActivityCacheImpl @Inject constructor(
         return delete > 0
     }
 
+    override suspend fun deleteActivityByAppId(appId: Long): Boolean {
+        val delete = activityDao.deleteActivityByAppId(appId)
+        return delete > 0
+    }
+
 }

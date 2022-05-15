@@ -8,6 +8,7 @@ package com.prototypebuilder.data.repository
 import com.prototypebuilder.data.datamapper.mapCacheListToDomainList
 import com.prototypebuilder.data.datamapper.mapCacheToDomain
 import com.prototypebuilder.data.datamapper.mapDomainToCache
+import com.prototypebuilder.data.datasource.activity.ActivityCDS
 import com.prototypebuilder.data.datasource.app.AppCacheDataSource
 import com.prototypebuilder.domain.core.base.AppModel
 import com.prototypebuilder.domain.repository.AppRepository
@@ -17,6 +18,7 @@ import javax.inject.Inject
 
 class AppRepositoryImpl @Inject constructor(
     private val cacheDataSource: AppCacheDataSource,
+    private val activityCDS: ActivityCDS
 ) : AppRepository {
     override suspend fun getAppsList(): Flow<List<AppModel>> {
         return cacheDataSource.getAppsList().map {
@@ -35,6 +37,10 @@ class AppRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteApp(appId: Long): Boolean {
-        return cacheDataSource.deleteApp(appId)
+        return cacheDataSource.deleteApp(appId).also {
+            if (it) {
+                activityCDS.deleteActivityByAppId(appId)
+            }
+        }
     }
 }
