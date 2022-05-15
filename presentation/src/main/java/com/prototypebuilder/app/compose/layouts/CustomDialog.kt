@@ -18,13 +18,14 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.prototypebuilder.app.R
 import com.prototypebuilder.app.compose.values.BluePrimary
+import com.prototypebuilder.domain.core.base.AppModel
 
 @Composable
 fun ShowAlertDialog(
     isDialogOpen: MutableState<Boolean>,
-    onBtnClick: (value: String) -> Unit,
+    onBtnClick: (appModel: AppModel) -> Unit,
 ) {
-    val emailVal = remember { mutableStateOf("") }
+    val appName = remember { mutableStateOf("") }
 
 
     if (isDialogOpen.value) {
@@ -63,8 +64,8 @@ fun ShowAlertDialog(
                     Spacer(modifier = Modifier.padding(5.dp))
 
                     OutlinedTextField(
-                        value = emailVal.value,
-                        onValueChange = { emailVal.value = it },
+                        value = appName.value,
+                        onValueChange = { appName.value = it },
                         label = { Text(text = "App Name") },
                         placeholder = { Text(text = "Enter App Name") },
                         singleLine = true,
@@ -72,7 +73,8 @@ fun ShowAlertDialog(
                         colors = TextFieldDefaults.outlinedTextFieldColors(
                             focusedBorderColor = BluePrimary,
                             focusedLabelColor = BluePrimary,
-                            textColor = BluePrimary,)
+                            textColor = BluePrimary,
+                        )
                     )
 
                     Spacer(modifier = Modifier.padding(5.dp))
@@ -80,7 +82,7 @@ fun ShowAlertDialog(
                     Button(
                         onClick = {
                             isDialogOpen.value = false
-                            onBtnClick.invoke(emailVal.value)
+                            onBtnClick.invoke(AppModel(appName = appName.value))
                         },
                         modifier = Modifier
                             .fillMaxWidth(0.5f)

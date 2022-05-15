@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.Flow
 interface AppCacheDataSource {
 
     suspend fun getAppsList(): Flow<List<RMAppEntity>>
-    suspend fun getAppById(appId: Int): RMAppEntity?
+    suspend fun getAppById(appId: Long): Flow<RMAppEntity?>
     suspend fun insertApp(rmAppEntity: RMAppEntity): Boolean
-    suspend fun deleteApp(appId: Int) : Boolean
+    suspend fun deleteApp(appId: Long) : Boolean
 
 }

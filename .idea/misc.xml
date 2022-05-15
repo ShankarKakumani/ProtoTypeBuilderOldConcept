@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="presentation/src/main/res/drawable/ic_arrow_back.xml" value="0.149" />
         <entry key="presentation/src/main/res/drawable/ic_baseline_person_pin_24.xml" value="0.149" />
         <entry key="presentation/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml" value="0.149" />
       </map>

@@ -3,50 +3,41 @@ package com.prototypebuilder.app.views.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.google.gson.Gson
-import com.prototypebuilder.domain.core.base.ActivityModel
-import com.prototypebuilder.domain.core.base.WidgetModel
-import com.prototypebuilder.domain.core.enum.WidgetType
-import com.prototypebuilder.domain.core.widget.TextFieldWidget
-import com.prototypebuilder.domain.core.widget.TextViewWidget
+import androidx.activity.viewModels
+import com.prototypebuilder.app.utils.navigateAway
+import com.prototypebuilder.app.views.appInfo.AppInfoActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), MainNavigator {
 
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val model = ActivityModel(
-            "Screen1", "56789876",
-            getUIList()
-        )
 
+        initComponents()
+
+    }
+
+    private fun initComponents() {
+        setComposeContent()
+        setNavigator()
+    }
+
+    private fun setComposeContent() {
         setContent {
             MainCompose().SetUpUI()
         }
-
     }
 
-    private fun getUIList(): List<WidgetModel> {
-        return listOf(
-            WidgetModel("456789", "One", WidgetType.TextView, getTextViewData()),
-            WidgetModel("234543", "Two", WidgetType.EditText, getTextFieldData()),
-            WidgetModel("234543", "Three", WidgetType.TextView, getTextViewData()),
-            WidgetModel("245433", "Four", WidgetType.EditText, getTextFieldData()),
-        )
+    private fun setNavigator() {
+        viewModel.setUpNavigator(this)
     }
 
-    private fun getTextViewData(): String {
-        val obj = TextViewWidget("I am Text")
-        return Gson().toJson(obj)
+    override fun gotoAppInfo(appId: Long) {
+        val intent = AppInfoActivity.intent(this, appId)
+        navigateAway(intent)
     }
-
-
-    private fun getTextFieldData(): String {
-        val obj = TextFieldWidget("I am EditText", "I am Hint")
-        return Gson().toJson(obj)
-    }
-
 
 }
 

@@ -25,10 +25,10 @@ interface AppDao {
     fun getApps(): Flow<List<RMAppEntity>?>
 
     @Query("SELECT * FROM tableAppsList where appId = :appId")
-    suspend fun getAppById(appId: kotlin.Int): RMAppEntity?
+    fun getAppById(appId: Long): Flow<RMAppEntity?>
 
     @Query("DELETE FROM tableAppsList where appId =:appId")
-    suspend fun deleteAppById(appId: Int) : Int
+    suspend fun deleteAppById(appId: Long) : Int
 
     @Query("DELETE FROM tableAppsList")
     suspend fun deleteAll()

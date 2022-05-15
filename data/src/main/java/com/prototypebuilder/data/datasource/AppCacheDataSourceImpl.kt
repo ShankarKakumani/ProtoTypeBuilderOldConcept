@@ -17,7 +17,7 @@ class AppCacheDataSourceImpl @Inject constructor(
         return appCache.getAppsList()
     }
 
-    override suspend fun getAppById(appId: Int): RMAppEntity? {
+    override suspend fun getAppById(appId: Long): Flow<RMAppEntity?> {
         return appCache.getAppById(appId)
     }
 
@@ -25,7 +25,7 @@ class AppCacheDataSourceImpl @Inject constructor(
         return appCache.insertApp(rmAppEntity)
     }
 
-    override suspend fun deleteApp(appId: Int): Boolean {
+    override suspend fun deleteApp(appId: Long): Boolean {
         return appCache.deleteApp(appId)
     }
 

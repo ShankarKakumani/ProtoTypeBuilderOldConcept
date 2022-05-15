@@ -24,15 +24,17 @@ class AppRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAppById(appId: Int): AppModel? {
-        return cacheDataSource.getAppById(appId)?.mapCacheToDomain()
+    override suspend fun getAppById(appId: Long): Flow<AppModel?> {
+        return cacheDataSource.getAppById(appId).map {
+            return@map it?.mapCacheToDomain()
+        }
     }
 
     override suspend fun insertApp(appModel: AppModel): Boolean {
         return cacheDataSource.insertApp(appModel.mapDomainToCache())
     }
 
-    override suspend fun deleteApp(appId: Int): Boolean {
+    override suspend fun deleteApp(appId: Long): Boolean {
         return cacheDataSource.deleteApp(appId)
     }
 }

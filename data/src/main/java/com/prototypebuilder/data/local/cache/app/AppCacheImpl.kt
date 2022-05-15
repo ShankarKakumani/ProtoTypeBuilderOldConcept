@@ -22,7 +22,7 @@ class AppCacheImpl @Inject constructor(
         }.distinctUntilChanged()
     }
 
-    override suspend fun getAppById(appId: Int): RMAppEntity? {
+    override suspend fun getAppById(appId: Long): Flow<RMAppEntity?> {
         return appDao.getAppById(appId)
     }
 
@@ -32,7 +32,7 @@ class AppCacheImpl @Inject constructor(
         return insert > 0L
     }
 
-    override suspend fun deleteApp(appId: Int): Boolean {
+    override suspend fun deleteApp(appId: Long): Boolean {
         val delete = appDao.deleteAppById(appId)
         return delete > 0
     }

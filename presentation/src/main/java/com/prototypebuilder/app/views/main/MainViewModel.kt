@@ -30,7 +30,9 @@ class MainViewModel @Inject constructor(
     private val deleteAppByIdUseCase: DeleteAppByIdUseCase
 ) : ViewModel() {
 
-    private var appByIdState: State<Resource<AppModel?>> = mutableStateOf(Resource.initial())
+    var navigator: MainNavigator? = null
+
+    private var appByIdState: State<Resource<Flow<AppModel?>>> = mutableStateOf(Resource.initial())
     private var insertAppState: State<Resource<Boolean>> = mutableStateOf(Resource.initial())
     private var deleteAppState: State<Resource<Boolean>> = mutableStateOf(Resource.initial())
 
@@ -40,7 +42,7 @@ class MainViewModel @Inject constructor(
         getAppsList()
     }
 
-    fun getAppById(appId: Int) {
+    fun getAppById(appId: Long) {
         appByIdState = getAppByIdUseCase.invokeState(
             scope = viewModelScope,
             params = GetAppByIdUseCase.Params(appId)
@@ -55,7 +57,7 @@ class MainViewModel @Inject constructor(
         )
     }
 
-    fun deleteApp(appId: Int) {
+    fun deleteApp(appId: Long) {
         deleteAppState = deleteAppByIdUseCase.invokeState(
             scope = viewModelScope,
             params = DeleteAppByIdUseCase.Params(appId)
@@ -94,5 +96,9 @@ class MainViewModel @Inject constructor(
 
             }
         }
+    }
+
+    fun setUpNavigator(navigator: MainNavigator) {
+        this.navigator = navigator
     }
 }

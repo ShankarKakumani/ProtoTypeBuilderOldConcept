@@ -11,8 +11,13 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tableAppsList")
 data class RMAppEntity(
     @PrimaryKey(autoGenerate = true)
-    val appId: Int,
-    val appName: String
-) {
-    constructor(appName: String) : this(0, appName)
-}
+    val appId: Long = 0,
+    val appName: String?,
+    val background: String?,
+    val statusBarColor: String?,
+    val statusBarDarkIcons: Boolean?,
+    val navigationBarColor: String?,
+    val navigationBarDarkIcons: Boolean?,
+    val themeType: String?,
+    val initialScreenId: Int?,
+)

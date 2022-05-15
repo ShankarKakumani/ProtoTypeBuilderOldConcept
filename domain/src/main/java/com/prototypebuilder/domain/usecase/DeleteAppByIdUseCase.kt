@@ -15,7 +15,7 @@ class DeleteAppByIdUseCase @Inject constructor(
 ) : AdvancedUseCase<Boolean, DeleteAppByIdUseCase.Params>() {
 
     data class Params(
-        val appId: Int
+        val appId: Long
     )
 
     override suspend fun run(dataType: DataType, params: Params): Boolean {

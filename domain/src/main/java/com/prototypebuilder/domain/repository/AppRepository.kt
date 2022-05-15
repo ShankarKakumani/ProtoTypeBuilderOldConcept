@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {
     suspend fun getAppsList(): Flow<List<AppModel>>
-    suspend fun getAppById(appId: Int): AppModel?
+    suspend fun getAppById(appId: Long): Flow<AppModel?>
     suspend fun insertApp(appModel: AppModel) : Boolean
-    suspend fun deleteApp(appId: Int) : Boolean
+    suspend fun deleteApp(appId: Long) : Boolean
 }

@@ -11,7 +11,14 @@ import com.prototypebuilder.domain.core.base.AppModel
 fun RMAppEntity.mapCacheToDomain(): AppModel {
     return AppModel(
         appName = appName,
-        appId = appId
+        appId = appId,
+        background = background,
+        statusBarColor = statusBarColor,
+        statusBarDarkIcons = statusBarDarkIcons,
+        navigationBarColor = navigationBarColor,
+        navigationBarDarkIcons = navigationBarDarkIcons,
+        themeType = themeType,
+        initialScreenId = initialScreenId
     )
 }
 
@@ -23,7 +30,15 @@ fun List<AppModel>.mapDomainListToCacheList(): List<RMAppEntity> {
 
 fun AppModel.mapDomainToCache(): RMAppEntity {
     return RMAppEntity(
-        appName = appName
+        appName = appName,
+        appId = appId,
+        background = background,
+        statusBarColor = statusBarColor,
+        statusBarDarkIcons = statusBarDarkIcons,
+        navigationBarColor = navigationBarColor,
+        navigationBarDarkIcons = navigationBarDarkIcons,
+        themeType = themeType,
+        initialScreenId = initialScreenId
     )
 }
 

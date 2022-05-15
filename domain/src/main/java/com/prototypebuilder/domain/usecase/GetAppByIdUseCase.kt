@@ -9,17 +9,18 @@ import com.prototypebuilder.domain.core.base.AppModel
 import com.prototypebuilder.domain.core.enum.DataType
 import com.prototypebuilder.domain.core.usecase.AdvancedUseCase
 import com.prototypebuilder.domain.repository.AppRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetAppByIdUseCase @Inject constructor(
     private val appRepository: AppRepository
-) : AdvancedUseCase<AppModel?, GetAppByIdUseCase.Params>() {
+) : AdvancedUseCase<Flow<AppModel?>, GetAppByIdUseCase.Params>() {
 
     data class Params(
-        val appId: Int
+        val appId: Long
     )
 
-    override suspend fun run(dataType: DataType, params: Params): AppModel? {
+    override suspend fun run(dataType: DataType, params: Params): Flow<AppModel?> {
         return appRepository.getAppById(appId = params.appId)
     }
 
