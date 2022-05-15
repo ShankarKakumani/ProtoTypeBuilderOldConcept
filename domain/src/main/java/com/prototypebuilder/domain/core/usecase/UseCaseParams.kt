@@ -15,7 +15,7 @@ abstract class UseCaseParams<T, in Parameter> {
 
     fun invoke(
         scope: CoroutineScope,
-        onResult: UseCaseResponse<T>?,
+        callback: UseCaseResponse<T>?,
         params: Parameter,
         dataType: DataType = DataType.ForceCacheStrategy
     ) {
@@ -23,10 +23,10 @@ abstract class UseCaseParams<T, in Parameter> {
         scope.launch {
             try {
                 val result = run(params, dataType)
-                onResult?.onSuccess(result)
+                callback?.onSuccess(result)
             } catch (e: Throwable) {
                 e.printStackTrace()
-                onResult?.onError(traceErrorException(e))
+                callback?.onError(traceErrorException(e))
             }
         }
     }

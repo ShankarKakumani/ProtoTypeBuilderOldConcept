@@ -2,6 +2,7 @@ package com.prototypebuilder.app.di.room
 
 import android.content.Context
 import androidx.room.Room
+import com.prototypebuilder.data.local.room.dao.ActivityDao
 import com.prototypebuilder.data.local.room.dao.AppDao
 import com.prototypebuilder.data.local.room.db.RoomDataBase
 import dagger.Module
@@ -32,4 +33,9 @@ object RoomModule {
         return simpleRoomDatabase.getAppDao()
     }
 
+    @Singleton
+    @Provides
+    fun provideActivityDao(simpleRoomDatabase: RoomDataBase): ActivityDao {
+        return simpleRoomDatabase.getActivityDao()
+    }
 }

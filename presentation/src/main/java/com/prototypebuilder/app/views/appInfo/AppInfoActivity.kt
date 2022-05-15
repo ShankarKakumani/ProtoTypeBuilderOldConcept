@@ -11,6 +11,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import com.prototypebuilder.domain.core.base.ActivityModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,6 +47,13 @@ class AppInfoActivity : ComponentActivity(), AppInfoNavigator {
         setComposeContent()
         setupNavigator()
         handleIntentData()
+        getDataFromDatabase()
+    }
+
+    private fun getDataFromDatabase() {
+        (appId ?: return).let {
+            viewModel.getActivityListByAppId(it)
+        }
     }
 
     private fun setupNavigator() {
@@ -64,6 +72,15 @@ class AppInfoActivity : ComponentActivity(), AppInfoNavigator {
         appId?.let { id ->
             viewModel.getAppById(id)
         }
+    }
+
+    override fun addNewActivity() {
+        viewModel.insertActivity(
+            ActivityModel(
+                appId = appId ?: return,
+                activityName = "New Activity"
+            )
+        )
     }
 
 }

@@ -1,6 +1,8 @@
 package com.prototypebuilder.app.di.repository
 
+import com.prototypebuilder.data.repository.ActivityRepositoryImpl
 import com.prototypebuilder.data.repository.AppRepositoryImpl
+import com.prototypebuilder.domain.repository.ActivityRepository
 import com.prototypebuilder.domain.repository.AppRepository
 import dagger.Module
 import dagger.Provides
@@ -17,6 +19,13 @@ object RepositoryModule {
     @Provides
     fun provideAppRepository(appRepositoryImpl: AppRepositoryImpl): AppRepository {
         return appRepositoryImpl
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideActivityRepository(activityRepositoryImpl: ActivityRepositoryImpl): ActivityRepository {
+        return activityRepositoryImpl
     }
 
 }

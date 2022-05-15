@@ -7,4 +7,5 @@ package com.prototypebuilder.app.views.appInfo
 
 interface AppInfoNavigator {
     fun onBackPressed()
+    fun addNewActivity()
 }

@@ -13,10 +13,10 @@ import androidx.lifecycle.viewModelScope
 import com.prototypebuilder.domain.core.base.AppModel
 import com.prototypebuilder.domain.core.resource.Resource
 import com.prototypebuilder.domain.core.usecase.UseCaseResponse
-import com.prototypebuilder.domain.usecase.DeleteAppByIdUseCase
-import com.prototypebuilder.domain.usecase.GetAppByIdUseCase
-import com.prototypebuilder.domain.usecase.GetAppsListUseCase
-import com.prototypebuilder.domain.usecase.InsertAppUseCase
+import com.prototypebuilder.domain.usecase.app.DeleteAppByIdUseCase
+import com.prototypebuilder.domain.usecase.app.GetAppByIdUseCase
+import com.prototypebuilder.domain.usecase.app.GetAppsListUseCase
+import com.prototypebuilder.domain.usecase.app.InsertAppUseCase
 import com.simpleenergy.domain.core.error.ApiError
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow

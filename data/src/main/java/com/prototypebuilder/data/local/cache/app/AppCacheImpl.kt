@@ -29,7 +29,7 @@ class AppCacheImpl @Inject constructor(
     @WorkerThread
     override suspend fun insertApp(rmAppEntity: RMAppEntity): Boolean {
         val insert = appDao.insertApp(rmAppEntity)
-        return insert > 0L
+        return insert > 0
     }
 
     override suspend fun deleteApp(appId: Long): Boolean {

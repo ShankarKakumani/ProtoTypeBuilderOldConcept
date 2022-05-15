@@ -8,7 +8,7 @@ package com.prototypebuilder.data.repository
 import com.prototypebuilder.data.datamapper.mapCacheListToDomainList
 import com.prototypebuilder.data.datamapper.mapCacheToDomain
 import com.prototypebuilder.data.datamapper.mapDomainToCache
-import com.prototypebuilder.data.datasource.AppCacheDataSource
+import com.prototypebuilder.data.datasource.app.AppCacheDataSource
 import com.prototypebuilder.domain.core.base.AppModel
 import com.prototypebuilder.domain.repository.AppRepository
 import kotlinx.coroutines.flow.Flow
