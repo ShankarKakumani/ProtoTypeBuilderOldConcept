@@ -28,6 +28,8 @@ class AppInfoViewModel @Inject constructor(
     private val insertActivityUseCase: InsertActivityUseCase
 ) : ViewModel() {
 
+
+
     var navigator: AppInfoNavigator? = null
     val appByIdState: MutableState<AppModel?> = mutableStateOf(null)
     val activityListState: MutableState<List<ActivityModel>> by lazy {
