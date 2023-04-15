@@ -1,4 +1,4 @@
-package dev.shankarkakumani.prototype
+package dev.shankarkakumani.compose_core
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,14 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import dev.shankarkakumani.data.repository.PrototypeRepositoryImpl
-import dev.shankarkakumani.prototype.ui.theme.MyApplicationTheme
+import dev.shankarkakumani.compose_core.ui.theme.PrototypeBuilderTheme
 
-class MainActivity : ComponentActivity() {
+class DefaultActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
+            PrototypeBuilderTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -27,11 +26,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        PrototypeRepositoryImpl().insertMessage()
     }
 }
 
@@ -46,7 +40,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    MyApplicationTheme {
+    PrototypeBuilderTheme {
         Greeting("Android")
     }
 }

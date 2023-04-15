@@ -17,3 +17,4 @@ rootProject.name = "Prototype Builder"
 include(":data")
 include(":presentation:admin")
 include(":presentation:prototype")
+include(":module:compose-core")
