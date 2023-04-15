@@ -5,17 +5,15 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import javax.inject.Inject
 
-class PrototypeRepositoryImpl {
+class PrototypeRepositoryImpl @Inject constructor() : ProtoTypeRepository {
 
     val database = Firebase.database
     val myRef = database.getReference("message")
 
-    fun insertMessage() {
-        myRef.setValue("Hello bitch")
-    }
 
-    fun getAppsList() {
+    override suspend fun getAppsList() {
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 TODO("Not yet implemented")
@@ -25,5 +23,9 @@ class PrototypeRepositoryImpl {
                 TODO("Not yet implemented")
             }
         })
+    }
+
+    override suspend fun getScreensListByAppId(appId: String) {
+        TODO("Not yet implemented")
     }
 }
