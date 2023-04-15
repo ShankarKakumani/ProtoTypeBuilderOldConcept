@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "259974803774",
+    "project_id": "prototype-builderr",
+    "storage_bucket": "prototype-builderr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259974803774:android:3be628cad7574acd197c6f",
+        "android_client_info": {
+          "package_name": "dev.shankarkakumani.prototype"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259974803774-6l9q8jj3o55obocpe5jdad714psq49nn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDejgulP8OUw3Xrkvt8G6xRn7Lr-J8_SL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259974803774-6l9q8jj3o55obocpe5jdad714psq49nn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
