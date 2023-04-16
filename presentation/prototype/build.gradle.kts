@@ -55,6 +55,7 @@ android {
 
 dependencies {
     implementation(project(":data"))
+    implementation(project(":module:resources"))
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
@@ -77,6 +78,8 @@ dependencies {
 
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
 }
 
 kapt {
